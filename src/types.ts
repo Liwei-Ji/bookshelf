@@ -1,6 +1,6 @@
 export interface Book {
   id: string;
-  file: File;
+  url?: string; 
   title: string;
   coverUrl?: string;
 }
