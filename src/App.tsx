@@ -68,7 +68,7 @@ useEffect(() => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 max-w-7xl mx-auto pb-10">
             {books.map((book) => (
               <div key={book.id} className="flex justify-center w-full">
-                <BookCard book={{ ...book, url: encodeURI(book.url) }} onClick={setActiveBook} />
+                <BookCard book={{ ...book, url: encodeURI(book.url!) }} onClick={setActiveBook} />
               </div>
             ))}
           </div>
