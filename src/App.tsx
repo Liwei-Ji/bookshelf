@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
   // Load books.json on mount
   useEffect(() => {
-    fetch('/pdfs/books.json')
+    fetch('/bookshelf/pdfs/books.json')
       .then(res => res.json())
       .then((data: Book[]) => setBooks(data))
       .catch((err) => console.error('Failed to load books.json:', err));

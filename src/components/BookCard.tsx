@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Book } from '../types';
-import { generatePdfThumbnail } from '../utils/pdfUtils';
 import { FileText } from 'lucide-react';
 
 interface BookCardProps {
@@ -9,47 +8,17 @@ interface BookCardProps {
 }
 
 export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
-  const [thumbnail, setThumbnail] = useState<string | null>(book.coverUrl || null);
-  const [loading, setLoading] = useState<boolean>(!book.coverUrl);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadThumbnail = async () => {
-      try {
-        const url = await generatePdfThumbnail(book.file);
-        if (isMounted) {
-          setThumbnail(url);
-          }
-          } catch (err) {
-        console.error("Failed to generate cover", err);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    };
-
-    if (!thumbnail) {
-      loadThumbnail();
-    }
-
-    return () => {
-      isMounted = false;
-    };
-  }, [book, thumbnail]);
+  const thumbnail = book.url || null; 
 
   return (
     <div 
       className="group flex flex-col gap-3 w-full max-w-[180px] cursor-pointer"
-      onClick={() => onClick({ ...book, coverUrl: thumbnail || undefined })}
+      onClick={() => onClick(book)}
     >
       <div 
         className="relative w-full aspect-[1/1.414] rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 shadow-sm transition-all duration-300 ease-out group-hover:shadow-xl group-hover:-translate-y-1.5 ring-1 ring-slate-900/5 dark:ring-white/10"
       >
-        {loading ? (
-          <div className="w-full h-full flex items-center justify-center bg-slate-50 dark:bg-slate-900">
-            <div className="w-6 h-6 border-2 border-slate-300 dark:border-slate-600 border-t-slate-800 dark:border-t-slate-200 rounded-full animate-spin"></div>
-          </div>
-        ) : thumbnail ? (
+        {thumbnail ? (
           <img 
             src={thumbnail} 
             alt={book.title} 
@@ -61,7 +30,6 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
           </div>
         )}
         
-        {/* Subtle inner border for depth */}
         <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5 dark:ring-white/5 pointer-events-none"></div>
       </div>
 

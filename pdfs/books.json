@@ -1,0 +1,11 @@
+[
+  { "id": "1", "url": "/bookshelf/pdfs/Introduction to Agents.pdf", "title": "Introduction to Agents" },
+  { "id": "2", "url": "/bookshelf/pdfs/Agent Quality.pdf", "title": "Agent Quality" },
+  { "id": "3", "url": "/bookshelf/pdfs/Agent Tools & Interoperability with Model Context Protocol (MCP).pdf", "title": "Agent Tools & Interoperability with Model Context Protocol (MCP)" },
+  { "id": "4", "url": "/bookshelf/pdfs/Context Engineering  Sessions & Memory.pdf", "title": "Context Engineering  Sessions & Memory" },
+  { "id": "5", "url": "/bookshelf/pdfs/Prototype to Production.pdf", "title": "Prototype to Production" },
+  { "id": "6", "url": "/bookshelf/pdfs/Agents.pdf", "title": "Agents" },
+  { "id": "7", "url": "/bookshelf/pdfs/Prompt Engineering.pdf", "title": "Prompt Engineering" },
+  { "id": "8", "url": "/bookshelf/pdfs/Gemini for Google Workspace Prompting Guide 101.pdf", "title": "Gemini for Google Workspace Prompting Guide 101" },
+  { "id": "9", "url": "/bookshelf/pdfs/Designing for the AI Era.pdf", "title": "Designing for the AI Era" }
+]
