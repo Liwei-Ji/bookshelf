@@ -10,13 +10,17 @@ const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Load books.json on mount
-  useEffect(() => {
-    fetch('/bookshelf/pdfs/books.json')
-      .then(res => res.json())
-      .then((data: Book[]) => setBooks(data))
-      .catch((err) => console.error('Failed to load books.json:', err));
-  }, []);
-
+useEffect(() => {
+  fetch('/pdfs/books.json')
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .then((data: Book[]) => setBooks(data))
+    .catch((err) =>
+      console.error('Failed to load books.json:', err)
+    );
+}, []);
   // Toggle Dark Mode
   useEffect(() => {
     const html = document.documentElement;
@@ -64,7 +68,7 @@ const App: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 max-w-7xl mx-auto pb-10">
             {books.map((book) => (
               <div key={book.id} className="flex justify-center w-full">
-                <BookCard book={book} onClick={setActiveBook} />
+                <BookCard book={{ ...book, url: encodeURI(book.url) }} onClick={setActiveBook} />
               </div>
             ))}
           </div>
