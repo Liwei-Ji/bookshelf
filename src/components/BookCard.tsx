@@ -14,20 +14,27 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
 
   useEffect(() => {
     let isMounted = true;
-    if (!thumbnail) {
-      generatePdfThumbnail(book.file)
-        .then((url) => {
-          if (isMounted) {
-            setThumbnail(url);
-            setLoading(false);
+
+    const loadThumbnail = async () => {
+      try {
+        const url = await generatePdfThumbnail(book.file);
+        if (isMounted) {
+          setThumbnail(url);
           }
-        })
-        .catch((err) => {
-          console.error("Failed to generate cover", err);
-          if (isMounted) setLoading(false);
-        });
+          } catch (err) {
+        console.error("Failed to generate cover", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    if (!thumbnail) {
+      loadThumbnail();
     }
-    return () => { isMounted = false; };
+
+    return () => {
+      isMounted = false;
+    };
   }, [book, thumbnail]);
 
   return (

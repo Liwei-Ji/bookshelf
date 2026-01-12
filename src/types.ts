@@ -3,7 +3,7 @@ export interface Book {
   url?: string; 
   title: string;
   coverUrl?: string;
-  file: File | string;
+  file: string;
 }
 
 // Extend Window interface for PDF.js
