@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
   // Load books.json on mount
 useEffect(() => {
-  fetch('/pdfs/books.json')
+  fetch(`${process.env.PUBLIC_URL}/pdfs/books.json`)
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
