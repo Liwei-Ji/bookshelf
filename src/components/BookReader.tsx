@@ -32,17 +32,22 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
 
     const loadPdf = async () => {
       try {
-        const loadingTask = window.pdfjsLib.getDocument(book.url);
-        const doc = await loadingTask.promise;
-        if (active) {
-          setPdfDoc(doc);
-          setTotalPages(doc.numPages);
-          setPageNum(1);
-        }
-      } catch (error) {
-        console.error('Error loading PDF:', error);
-      }
-    };
+        if (!book.url) return;
+
+    const pdfUrl = `${process.env.PUBLIC_URL}/${book.url.replace('./', '')}`;
+
+    const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
+    const doc = await loadingTask.promise;
+
+    if (active) {
+      setPdfDoc(doc);
+      setTotalPages(doc.numPages);
+      setPageNum(1);
+    }
+  } catch (error) {
+    console.error('Error loading PDF:', error);
+  }
+};
 
     loadPdf();
 
