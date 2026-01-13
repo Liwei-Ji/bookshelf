@@ -251,12 +251,12 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
           </div>
 
           {!pdfDoc && (
-            <div className="absolute inset-0 flex items-center justify-center bg-slate-50 dark:bg-slate-900 z-0">
-              <Loader2 className="animate-spin text-slate-400" size={32} />
+            <div className="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 w-[70vw] md:w-[500px] aspect-[1/1.414] rounded-lg animate-pulse">
+              <Loader2 className="animate-spin text-slate-400 mb-4" size={40} />
             </div>
           )}
 
-          <canvas ref={canvasRef} className="block select-none mx-auto" />
+          <canvas ref={canvasRef} className="block select-none mx-auto ${!pdfDoc ? 'hidden' : 'block'}`}" />
         </div>
       </div>
 
