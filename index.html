@@ -5,25 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" />
     <title>Bookshelf</title>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              slate: {
-                950: '#020617',
-              }
-            }
-          }
-        }
-      }
-    </script>
+    
     <!-- PDF.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
       // Configure PDF.js worker
+      window.addEventListener('load', () => {
+      if (window.pdfjsLib) {
       window.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+      });
     </script>
     <style>
       /* Custom utility for 3D perspective */

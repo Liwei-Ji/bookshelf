@@ -7,12 +7,16 @@ import { Sun, Moon, Library, BookOpen } from 'lucide-react';
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved ? saved === 'dark' : true;
+  });
 
   // Load books.json on mount
 useEffect(() => {
-  const baseUrl = import.meta.env.BASE_URL; // 獲取 "/bookshelf/"
-  fetch(`${baseUrl}pdfs/books.json`) // 確保路徑為 /bookshelf/pdfs/books.json
+  const baseUrl = import.meta.env.BASE_URL; // Obtain "/bookshelf/"
+  fetch(`${baseUrl}pdfs/books.json`) // Confirm path /bookshelf/pdfs/books.json
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return res.json();
@@ -23,12 +27,14 @@ useEffect(() => {
     );
 }, []);
   // Toggle Dark Mode
-  useEffect(() => {
+useEffect(() => {
     const html = document.documentElement;
     if (isDarkMode) {
       html.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       html.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
 

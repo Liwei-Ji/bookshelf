@@ -15,26 +15,26 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
     let isMounted = true;
 
     const generateThumbnail = async () => {
-      // 1. 安全檢查：解決 'book.url' is possibly 'undefined' 報錯
+      // 安全檢查：解決 'book.url' is possibly 'undefined' 報錯
       if (!book.url) {
         if (isMounted) setLoading(false);
         return;
       }
 
       try {
-        // 2. 獲取 Vite 基礎路徑 (GitHub Pages 部署路徑)
+        // 獲取 Vite 基礎路徑
         const baseUrl = import.meta.env.BASE_URL;
         // 確保路徑拼接正確，避免雙斜槓
         const pdfUrl = `${baseUrl.replace(/\/$/, '')}/${book.url.replace(/^\//, '')}`;
 
-        // 3. 使用 PDF.js 載入文件 (需確保 index.html 已引入 pdf.js CDN)
+        // 使用 PDF.js 載入文件 (需確保 index.html 已引入 pdf.js CDN)
         const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
         const pdf = await loadingTask.promise;
         
-        // 4. 獲取第一頁 (封面)
+        // 獲取第一頁 (封面)
         const page = await pdf.getPage(1);
         
-        // 5. 設定封面渲染比例 (scale 為 0.4~0.5 即可，節省記憶體)
+        // 設定封面渲染比例
         const viewport = page.getViewport({ scale: 0.5 });
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
@@ -43,11 +43,11 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
         canvas.width = viewport.width;
 
         if (context) {
-          // 6. 將 PDF 渲染到畫布上
+          // 將 PDF 渲染到畫布上
           await page.render({ canvasContext: context, viewport }).promise;
           
           if (isMounted) {
-            // 7. 將畫布轉換為圖片 DataURL 並存入 State
+            // 將畫布轉換為圖片 DataURL 並存入 State
             setThumbnail(canvas.toDataURL('image/jpeg', 0.8));
           }
         }
@@ -83,7 +83,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
           <img 
             src={thumbnail} 
             alt={book.title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500"
           />
         ) : (
           /* 生成失敗或無 URL 時顯示預設圖標 */
@@ -93,7 +93,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
           </div>
         )}
         
-        {/* 裝飾性效果：書本左側陰影與光澤，增加真實感 */}
+        {/* 書本左側陰影與光澤，增加真實感 */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-transparent pointer-events-none"></div>
         <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5 dark:ring-white/5 pointer-events-none"></div>
       </div>
