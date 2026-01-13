@@ -11,9 +11,10 @@ const App: React.FC = () => {
 
   // Load books.json on mount
 useEffect(() => {
-  fetch('./pdfs/books.json')
+  const baseUrl = import.meta.env.BASE_URL; // 獲取 "/bookshelf/"
+  fetch(`${baseUrl}pdfs/books.json`) // 確保路徑為 /bookshelf/pdfs/books.json
     .then((res) => {
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return res.json();
     })
     .then((data: Book[]) => setBooks(data))

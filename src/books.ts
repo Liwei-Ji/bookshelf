@@ -12,8 +12,11 @@ interface BookJson {
  */
 export const loadBooks = async (): Promise<Book[]> => {
   try {
-    const res = await fetch(`${process.env.PUBLIC_URL}/pdfs/books.json`)
-    if (!res.ok) throw new Error('Failed to fetch books.json');
+    const baseUrl = import.meta.env.BASE_URL;
+    const jsonUrl = `${baseUrl.replace(/\/$/, '')}/pdfs/books.json`;
+
+    const res = await fetch(jsonUrl);
+    if (!res.ok) throw new Error(`Failed to fetch books.json: ${res.status}`);
 
     const data: BookJson[] = await res.json();
 
