@@ -6,6 +6,7 @@
   { "id": "5", "url": "pdfs/Prototype to Production.pdf", "title": "Prototype to Production" },
   { "id": "6", "url": "pdfs/Agents.pdf", "title": "Agents" },
   { "id": "7", "url": "pdfs/Prompt Engineering.pdf", "title": "Prompt Engineering" },
-  { "id": "8", "url": "pdfs/Gemini for Google Workspace Prompting Guide 101.pdf", "title": "Gemini for Google Workspace Prompting Guide 101" },
-  { "id": "9", "url": "pdfs/Designing for the AI Era.pdf", "title": "Designing for the AI Era" }
+  { "id": "8", "url": "pdfs/Agents Companion.pdf", "title": "Agents Companion" },
+  { "id": "9", "url": "pdfs/Gemini for Google Workspace Prompting Guide 101.pdf", "title": "Gemini for Google Workspace Prompting Guide 101" },
+  { "id": "10", "url": "pdfs/Designing for the AI Era.pdf", "title": "Designing for the AI Era" }
 ]
