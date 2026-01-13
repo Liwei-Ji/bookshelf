@@ -33,32 +33,27 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
     const loadPdf = async () => {
       try {
         if (!book.url) return;
-
-        const baseUrl = import.meta.env.BASE_URL; // get the base URL "/bookshelf/"
+        const baseUrl = import.meta.env.BASE_URL;
         const pdfUrl = `${baseUrl}${book.url}`;
         
-        console.log('正在讀取 PDF 路徑:', pdfUrl); // For debugging
+        const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
+        const doc = await loadingTask.promise;
 
-    const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
-    const doc = await loadingTask.promise;
-
-    if (active) {
-      setPdfDoc(doc);
-      setTotalPages(doc.numPages);
-      setPageNum(1);
-    }
-  } catch (error) {
-    console.error('Error loading PDF:', error);
-  }
-};
+        if (active) {
+          setPdfDoc(doc);
+          setTotalPages(doc.numPages);
+          setPageNum(1);
+        }
+      } catch (error) {
+        console.error('Error loading PDF:', error);
+      }
+    };
 
     loadPdf();
 
     return () => {
       active = false;
-      if (renderTaskRef.current) {
-        renderTaskRef.current.cancel();
-      }
+      if (renderTaskRef.current) renderTaskRef.current.cancel();
       setPdfDoc(null);
     };
   }, [book.url]);
@@ -66,20 +61,15 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
   // Render Page
   useEffect(() => {
     if (!pdfDoc || !canvasRef.current || !containerRef.current) return;
-
     let active = true;
 
     const renderPage = async () => {
       if (renderTaskRef.current) {
-        try {
-          await renderTaskRef.current.cancel();
-        } catch {}
+        try { await renderTaskRef.current.cancel(); } catch {}
       }
-
       if (!active) return;
 
       setIsRendering(true);
-
       try {
         const page = await pdfDoc.getPage(pageNum);
         const canvas = canvasRef.current;
@@ -87,41 +77,28 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
         if (!canvas || !container) return;
 
         const context = canvas.getContext('2d');
-
         const containerWidth = container.clientWidth;
         const containerHeight = container.clientHeight;
 
         const unscaledViewport = page.getViewport({ scale: 1 });
         const widthScale = containerWidth / unscaledViewport.width;
         const heightScale = containerHeight / unscaledViewport.height;
-
         const fitScale = Math.min(widthScale, heightScale);
 
         const dpr = window.devicePixelRatio || 1;
         const renderScale = fitScale * dpr;
-
         const viewport = page.getViewport({ scale: renderScale });
 
         canvas.width = viewport.width;
         canvas.height = viewport.height;
-
-        // Set CSS display size
         canvas.style.width = `${unscaledViewport.width * fitScale}px`;
         canvas.style.height = `${unscaledViewport.height * fitScale}px`;
 
-        const renderContext = {
-          canvasContext: context!,
-          viewport,
-        };
-
-        const renderTask = page.render(renderContext);
+        const renderTask = page.render({ canvasContext: context!, viewport });
         renderTaskRef.current = renderTask;
-
         await renderTask.promise;
       } catch (error: any) {
-        if (error.name !== 'RenderingCancelledException') {
-          console.error('Render error:', error);
-        }
+        if (error.name !== 'RenderingCancelledException') console.error('Render error:', error);
       } finally {
         if (active) {
           setIsRendering(false);
@@ -131,34 +108,26 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
     };
 
     renderPage();
-
     return () => {
       active = false;
-      if (renderTaskRef.current) {
-        renderTaskRef.current.cancel();
-      }
+      if (renderTaskRef.current) renderTaskRef.current.cancel();
     };
   }, [pdfDoc, pageNum, resizeTrigger]);
 
-  // Handle window resize
+  // Resize handler
   useEffect(() => {
     let timeoutId: any;
     const handleResize = () => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setResizeTrigger((prev) => prev + 1);
-      }, 200);
+      timeoutId = setTimeout(() => setResizeTrigger(prev => prev + 1), 200);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Page change
   const changePage = (offset: number) => {
     const newPage = pageNum + offset;
-    if (newPage >= 1 && newPage <= totalPages) {
-      setPageNum(newPage);
-    }
+    if (newPage >= 1 && newPage <= totalPages) setPageNum(newPage);
   };
 
   const handleClose = () => {
@@ -166,7 +135,6 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
     setTimeout(onClose, 300);
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') changePage(1);
@@ -209,54 +177,39 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
       >
         {/* Desktop Navigation */}
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            changePage(-1);
-          }}
+          onClick={(e) => { e.stopPropagation(); changePage(-1); }}
           disabled={pageNum <= 1}
-          className="hidden md:flex absolute left-8 p-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur shadow-sm hover:shadow-md text-slate-800 dark:text-slate-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all z-20"
+          className="hidden md:flex absolute left-8 p-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur shadow-sm hover:shadow-md text-slate-800 dark:text-slate-200 disabled:opacity-30 transition-all z-20"
         >
           <ChevronLeft size={24} />
         </button>
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            changePage(1);
-          }}
+          onClick={(e) => { e.stopPropagation(); changePage(1); }}
           disabled={pageNum >= totalPages}
-          className="hidden md:flex absolute right-8 p-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur shadow-sm hover:shadow-md text-slate-800 dark:text-slate-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all z-20"
+          className="hidden md:flex absolute right-8 p-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur shadow-sm hover:shadow-md text-slate-800 dark:text-slate-200 disabled:opacity-30 transition-all z-20"
         >
           <ChevronRight size={24} />
         </button>
 
         {/* Content Container */}
-        <div className="relative max-w-full max-h-full flex justify-center items-center shadow-none md:shadow-2xl md:rounded-lg bg-transparent md:bg-white">
+        <div className="relative flex items-center justify-center">
           {/* Mobile Tap Zones */}
           <div className="absolute inset-0 flex md:hidden z-10">
-            <div
-              className="w-[30%] h-full active:bg-black/5 dark:active:bg-white/5 transition-colors"
-              onClick={(e) => {
-                e.stopPropagation();
-                changePage(-1);
-              }}
-            />
+            <div className="w-[30%] h-full active:bg-black/5" onClick={() => changePage(-1)} />
             <div className="w-[40%] h-full" />
-            <div
-              className="w-[30%] h-full active:bg-black/5 dark:active:bg-white/5 transition-colors"
-              onClick={(e) => {
-                e.stopPropagation();
-                changePage(1);
-              }}
-            />
+            <div className="w-[30%] h-full active:bg-black/5" onClick={() => changePage(1)} />
           </div>
 
           {!pdfDoc && (
-            <div className="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 w-[70vw] md:w-[500px] aspect-[1/1.414] rounded-lg animate-pulse">
-              <Loader2 className="animate-spin text-slate-400 mb-4" size={40} />
+            <div className="flex flex-col items-center justify-center py-20">
+              <Loader2 className="animate-spin text-slate-400 dark:text-slate-500" size={48} strokeWidth={1.5} />
             </div>
           )}
 
-          <canvas ref={canvasRef} className="block select-none mx-auto ${!pdfDoc ? 'hidden' : 'block'}`}" />
+          <canvas 
+            ref={canvasRef} 
+            className={`block select-none mx-auto ${!pdfDoc ? 'hidden' : 'block'}`} 
+          />
         </div>
       </div>
 
