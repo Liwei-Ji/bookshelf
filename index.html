@@ -19,28 +19,49 @@
     <style>   
       /* Custom Scrollbar Styling */
       ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1; /* slate-300 */
-        border-radius: 5px;
-        border: 2px solid transparent;
+        background-color: transparent;
+        border-radius: 10px;
         background-clip: content-box;
+        border: 1px solid transparent;
+        transition: background-color 0.3s ease;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8; /* slate-400 */
+      /* 當滑鼠移入 main 或是整個 body 時，顯示滾動條 */
+        main:hover::-webkit-scrollbar-thumb,
+        body:hover::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1; /* 亮色模式浮現顏色 */
       }
 
-      /* Dark mode scrollbar */
-      .dark ::-webkit-scrollbar-thumb {
-        background: #334155; /* slate-700 */
+      /* 暗黑模式 移入時浮現的顏色 */
+       .dark main:hover::-webkit-scrollbar-thumb,
+       .dark body:hover::-webkit-scrollbar-thumb {
+        background-color: #334155; 
+      }
+      
+      /* 滑鼠直接懸停在滾動條上或點擊時，加深顏色 */
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8 !important;
       }
       .dark ::-webkit-scrollbar-thumb:hover {
-        background: #475569; /* slate-600 */
+        background-color: #475569 !important;
+      }
+      
+      /* Firefox 支援 (標準語法) */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+      }
+      *:hover {
+        scrollbar-color: #cbd5e1 transparent;
+      }
+      .dark *:hover {
+        scrollbar-color: #334155 transparent;
       }
     </style>
 
