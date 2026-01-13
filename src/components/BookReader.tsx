@@ -34,10 +34,10 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
       try {
         if (!book.url) return;
 
-        const baseUrl = import.meta.env.BASE_URL; // 這會拿到 "/bookshelf/"
+        const baseUrl = import.meta.env.BASE_URL; // get the base URL "/bookshelf/"
         const pdfUrl = `${baseUrl}${book.url}`;
         
-        console.log('正在讀取 PDF 路徑:', pdfUrl); // 偵錯用
+        console.log('正在讀取 PDF 路徑:', pdfUrl); // For debugging
 
     const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
     const doc = await loadingTask.promise;

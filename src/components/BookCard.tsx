@@ -15,7 +15,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
     let isMounted = true;
 
     const generateThumbnail = async () => {
-      // 安全檢查：解決 'book.url' is possibly 'undefined' 報錯
+      // 安全檢查 解決 'book.url' is possibly 'undefined' 報錯
       if (!book.url) {
         if (isMounted) setLoading(false);
         return;
@@ -92,10 +92,6 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
              <span className="text-[10px] mt-2">No Preview</span>
           </div>
         )}
-        
-        {/* 書本左側陰影與光澤，增加真實感 */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5 dark:ring-white/5 pointer-events-none"></div>
       </div>
 
       {/* 書名區域 */}
