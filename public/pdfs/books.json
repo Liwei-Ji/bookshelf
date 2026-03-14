@@ -1,12 +1,77 @@
 [
-  { "id": "1", "url": "pdfs/Introduction to Agents.pdf", "title": "Introduction to Agents" },
-  { "id": "2", "url": "pdfs/Agent Quality.pdf", "title": "Agent Quality" },
-  { "id": "3", "url": "pdfs/Agent Tools & Interoperability with Model Context Protocol (MCP).pdf", "title": "Agent Tools & Interoperability with Model Context Protocol (MCP)" },
-  { "id": "4", "url": "pdfs/Context Engineering  Sessions & Memory.pdf", "title": "Context Engineering  Sessions & Memory" },
-  { "id": "5", "url": "pdfs/Prototype to Production.pdf", "title": "Prototype to Production" },
-  { "id": "6", "url": "pdfs/Agents.pdf", "title": "Agents" },
-  { "id": "7", "url": "pdfs/Prompt Engineering.pdf", "title": "Prompt Engineering" },
-  { "id": "8", "url": "pdfs/Agents Companion.pdf", "title": "Agents Companion" },
-  { "id": "9", "url": "pdfs/Gemini for Google Workspace Prompting Guide 101.pdf", "title": "Gemini for Google Workspace Prompting Guide 101" },
-  { "id": "10", "url": "pdfs/Designing for the AI Era.pdf", "title": "Designing for the AI Era" }
+  {
+    "id": "1",
+    "url": "pdfs/Introduction to Agents.pdf",
+    "title": "Introduction to Agents"
+  },
+  {
+    "id": "2",
+    "url": "pdfs/Agent Quality.pdf",
+    "title": "Agent Quality"
+  },
+  {
+    "id": "3",
+    "url": "pdfs/Agent Tools & Interoperability with Model Context Protocol (MCP).pdf",
+    "title": "Agent Tools & Interoperability with Model Context Protocol (MCP)"
+  },
+  {
+    "id": "4",
+    "url": "pdfs/Context Engineering  Sessions & Memory.pdf",
+    "title": "Context Engineering  Sessions & Memory"
+  },
+  {
+    "id": "5",
+    "url": "pdfs/Prototype to Production.pdf",
+    "title": "Prototype to Production"
+  },
+  {
+    "id": "6",
+    "url": "pdfs/Agents.pdf",
+    "title": "Agents"
+  },
+  {
+    "id": "7",
+    "url": "pdfs/Prompt Engineering.pdf",
+    "title": "Prompt Engineering"
+  },
+  {
+    "id": "8",
+    "url": "pdfs/Agents Companion.pdf",
+    "title": "Agents Companion"
+  },
+  {
+    "id": "9",
+    "url": "pdfs/Gemini for Google Workspace Prompting Guide 101.pdf",
+    "title": "Gemini for Google Workspace Prompting Guide 101"
+  },
+  {
+    "id": "10",
+    "url": "pdfs/Designing for the AI Era.pdf",
+    "title": "Designing for the AI Era"
+  },
+  {
+    "id": "11",
+    "url": "pdfs/Prompt Engineering for LLMs.pdf",
+    "title": "Prompt Engineering for LLMs"
+  },
+  {
+    "id": "12",
+    "url": "pdfs/The Design of Everyday Things.pdf",
+    "title": "The Design of Everyday Things"
+  },
+  {
+    "id": "13",
+    "url": "pdfs/Hooked How to Build Habit-Forming Products.pdf",
+    "title": "Hooked How to Build Habit-Forming Products"
+  },
+  {
+    "id": "14",
+    "url": "pdfs/About Face 3 The Essentials of Interaction Design.pdf",
+    "title": "About Face 3 The Essentials of Interaction Design"
+  },
+  {
+    "id": "15",
+    "url": "pdfs/About Face The Essentials of Interaction Design.pdf",
+    "title": "About Face The Essentials of Interaction Design"
+  }
 ]
