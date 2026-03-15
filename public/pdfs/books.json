@@ -32,7 +32,8 @@
   {
     "id": "7",
     "url": "pdfs/Prompt Engineering.pdf",
-    "title": "Prompt Engineering"
+    "title": "Prompt Engineering",
+    "knowledgePath": "knowledge/prompt-engineering/summary.json"
   },
   {
     "id": "8",

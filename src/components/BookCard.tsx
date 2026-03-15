@@ -30,10 +30,10 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
         // 使用 PDF.js 載入文件 (需確保 index.html 已引入 pdf.js CDN)
         const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
         const pdf = await loadingTask.promise;
-        
+
         // 獲取第一頁 (封面)
         const page = await pdf.getPage(1);
-        
+
         // 設定封面渲染比例
         const viewport = page.getViewport({ scale: 0.5 });
         const canvas = document.createElement('canvas');
@@ -45,7 +45,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
         if (context) {
           // 將 PDF 渲染到畫布上
           await page.render({ canvasContext: context, viewport }).promise;
-          
+
           if (isMounted) {
             // 將畫布轉換為圖片 DataURL 並存入 State
             setThumbnail(canvas.toDataURL('image/jpeg', 0.8));
@@ -59,37 +59,45 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
     };
 
     generateThumbnail();
-    
+
     // 組件卸載時的清理動作
     return () => { isMounted = false; };
   }, [book.url, book.title]);
 
   return (
-    <div 
+    <div
       className="group flex flex-col gap-3 w-full max-w-[180px] cursor-pointer"
       onClick={() => onClick(book)}
     >
       {/* 封面圖片容器 */}
-      <div 
+      <div
         className="relative w-full aspect-[1/1.414] rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 shadow-sm transition-all duration-300 ease-out group-hover:shadow-xl group-hover:-translate-y-1.5 ring-1 ring-slate-900/5 dark:ring-white/10"
       >
         {loading ? (
           /* 載入中狀態 */
           <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-             <Loader2 size={24} className="animate-spin text-slate-400" />
+            <Loader2 size={24} className="animate-spin text-slate-400" />
           </div>
         ) : thumbnail ? (
           /* 成功生成封面圖片 */
-          <img 
-            src={thumbnail} 
-            alt={book.title} 
+          <img
+            src={thumbnail}
+            alt={book.title}
             className="w-full h-full object-cover transition-transform duration-500"
           />
         ) : (
           /* 生成失敗或無 URL 時顯示預設圖標 */
           <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
-             <FileText size={32} strokeWidth={1.5} />
-             <span className="text-[10px] mt-2">No Preview</span>
+            <FileText size={32} strokeWidth={1.5} />
+            <span className="text-[10px] mt-2">No Preview</span>
+          </div>
+        )}
+        {/* Knowledge resource indicator */}
+        {book.knowledgePath && (
+          <div className="absolute top-2 right-2 z-10">
+            <div className="w-5 h-5 rounded-full bg-amber-400 dark:bg-amber-500 flex items-center justify-center shadow-sm" title="有學習資源">
+              <span className="text-white text-[9px] font-bold">📖</span>
+            </div>
           </div>
         )}
       </div>

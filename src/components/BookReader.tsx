@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Book } from '../types';
-import { X, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { Book, KnowledgeSummary } from '../types';
+import { X, ChevronLeft, ChevronRight, Loader2, BookOpen } from 'lucide-react';
+import { KnowledgePanel } from './KnowledgePanel';
 
 interface BookReaderProps {
   book: Book;
@@ -17,6 +18,10 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
   const [isRendering, setIsRendering] = useState(false);
   const [resizeTrigger, setResizeTrigger] = useState(0);
 
+  // Knowledge state
+  const [knowledgeData, setKnowledgeData] = useState<KnowledgeSummary | null>(null);
+  const [showKnowledge, setShowKnowledge] = useState(false);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const renderTaskRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,6 +30,19 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
   useEffect(() => {
     requestAnimationFrame(() => setIsVisible(true));
   }, []);
+
+  // Load knowledge data if available
+  useEffect(() => {
+    if (!book.knowledgePath) return;
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}${book.knowledgePath}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then((data: KnowledgeSummary) => setKnowledgeData(data))
+      .catch((err) => console.error('Failed to load knowledge data:', err));
+  }, [book.knowledgePath]);
 
   // Load PDF from URL
   useEffect(() => {
@@ -35,7 +53,7 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
         if (!book.url) return;
         const baseUrl = import.meta.env.BASE_URL;
         const pdfUrl = `${baseUrl}${book.url}`;
-        
+
         const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
         const doc = await loadingTask.promise;
 
@@ -65,7 +83,7 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
 
     const renderPage = async () => {
       if (renderTaskRef.current) {
-        try { await renderTaskRef.current.cancel(); } catch {}
+        try { await renderTaskRef.current.cancel(); } catch { }
       }
       if (!active) return;
 
@@ -147,13 +165,23 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col bg-white dark:bg-slate-950 transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`fixed inset-0 z-50 flex flex-col bg-white dark:bg-slate-950 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
     >
       {/* Header */}
       <div className="h-16 flex items-center justify-between px-4 md:px-6 bg-white dark:bg-slate-950 shrink-0 z-20">
-        <div className="w-10" />
+        <div className="w-10">
+          {knowledgeData && (
+            <button
+              onClick={() => setShowKnowledge(true)}
+              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-amber-50 dark:hover:bg-amber-900/20 text-amber-500 dark:text-amber-400 transition-colors"
+              aria-label="查看書本要點"
+              title="書本要點"
+            >
+              <BookOpen size={20} strokeWidth={1.5} />
+            </button>
+          )}
+        </div>
         <div className="flex flex-col items-center">
           <h2 className="text-sm font-medium text-slate-900 dark:text-slate-100 max-w-[200px] md:max-w-md truncate">
             {book.title}
@@ -206,9 +234,9 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
             </div>
           )}
 
-          <canvas 
-            ref={canvasRef} 
-            className={`block select-none mx-auto ${!pdfDoc ? 'hidden' : 'block'}`} 
+          <canvas
+            ref={canvasRef}
+            className={`block select-none mx-auto ${!pdfDoc ? 'hidden' : 'block'}`}
           />
         </div>
       </div>
@@ -220,6 +248,15 @@ export const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
           style={{ width: `${(pageNum / totalPages) * 100}%` }}
         ></div>
       </div>
+
+      {/* Knowledge Panel Overlay */}
+      {showKnowledge && knowledgeData && (
+        <KnowledgePanel
+          bookTitle={book.title}
+          summary={knowledgeData}
+          onClose={() => setShowKnowledge(false)}
+        />
+      )}
     </div>
   );
 };
