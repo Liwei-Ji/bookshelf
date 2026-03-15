@@ -73,5 +73,35 @@
     "id": "15",
     "url": "pdfs/About Face The Essentials of Interaction Design.pdf",
     "title": "About Face The Essentials of Interaction Design"
+  },
+  {
+    "id": "16",
+    "url": "pdfs/Hands On Large Language Models.pdf",
+    "title": "Hands On Large Language Models"
+  },
+  {
+    "id": "17",
+    "url": "pdfs/AI Agents in Action.pdf",
+    "title": "AI Agents in Action"
+  },
+  {
+    "id": "18",
+    "url": "pdfs/Building AI Powered Products.pdf",
+    "title": "Building AI Powered Products"
+  },
+  {
+    "id": "19",
+    "url": "pdfs/UX for Business.pdf",
+    "title": "UX for Business"
+  },
+  {
+    "id": "20",
+    "url": "pdfs/AI Engineering Building Applications.pdf",
+    "title": "AI Engineering Building Applications"
+  },
+  {
+    "id": "21",
+    "url": "pdfs/Beyond Vibe Coding Early Release.pdf",
+    "title": "Beyond Vibe Coding Early Release"
   }
 ]
