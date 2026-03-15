@@ -103,5 +103,45 @@
     "id": "21",
     "url": "pdfs/Beyond Vibe Coding Early Release.pdf",
     "title": "Beyond Vibe Coding Early Release"
+  },
+  {
+    "id": "22",
+    "url": "pdfs/The Product Minded Engineer.pdf",
+    "title": "The Product Minded Engineer"
+  },
+  {
+    "id": "23",
+    "url": "pdfs/Visualizing Generative AI Early Release.pdf",
+    "title": "Visualizing Generative AI Early Release"
+  },
+  {
+    "id": "24",
+    "url": "pdfs/Generative AI Design Patterns.pdf",
+    "title": "Generative AI Design Patterns"
+  },
+  {
+    "id": "25",
+    "url": "pdfs/AI Value Creators.pdf",
+    "title": "AI Value Creators"
+  },
+  {
+    "id": "26",
+    "url": "pdfs/Learning Github Copilot.pdf",
+    "title": "Learning Github Copilot"
+  },
+  {
+    "id": "27",
+    "url": "pdfs/AI Native Software Delivery.pdf",
+    "title": "AI Native Software Delivery"
+  },
+  {
+    "id": "28",
+    "url": "pdfs/Generative AI for Software Development.pdf",
+    "title": "Generative AI for Software Development"
+  },
+  {
+    "id": "29",
+    "url": "pdfs/Responsible Software Engineering.pdf",
+    "title": "Responsible Software Engineering"
   }
 ]
