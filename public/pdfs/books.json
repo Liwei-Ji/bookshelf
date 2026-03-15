@@ -144,5 +144,10 @@
     "id": "29",
     "url": "pdfs/Responsible Software Engineering.pdf",
     "title": "Responsible Software Engineering"
+  },
+  {
+    "id": "30",
+    "url": "pdfs/LangChain for Life Sciences and Healthcare.pdf",
+    "title": "LangChain for Life Sciences and Healthcare"
   }
 ]
