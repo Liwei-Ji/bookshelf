@@ -1,0 +1,77 @@
+{
+    "meta": {
+        "bookTitle": "Beyond Vibe Coding: AI Engineering - Building Applications with Foundation Models (Early Release)",
+        "author": "Addy Osmani",
+        "generatedAt": "2026-03-18T22:30:15Z",
+        "depth": "quick",
+        "language": "zh-TW"
+    },
+    "part1_overview": {
+        "topic": "AI 工程學（AI Engineering）：探討如何從單純的「感覺驅動開發（Vibe Coding）」過渡到系統化、可評估且具備生產力的 AI 應用建構流程。",
+        "coreProblem": "目前的 AI 開發過於依賴非正式的測試（即 Vibe Coding），缺乏嚴謹的評估指標，導致開發者難以解決幻覺、高延遲、不可控成本以及系統可靠性等核心工程挑戰。",
+        "mainArgument": "成功的 AI 應用不應僅僅是圍繞模型（Model-centric），而應是以「數據、上下文與評估」為中心。透過 RAG 階梯、自動化評估管道以及推理優化技術，才能將概率性的模型轉化為確定性的軟體產品。",
+        "targetAudience": "軟體工程師、AI 架構師、產品經理以及希望將大語言模型（LLM）落地為實際產品的開發者。",
+        "keyIdeas": [
+            {
+                "name": "從 Vibe Coding 轉向 AI 工程",
+                "explanation": "Vibe Coding 依賴直覺與隨機測試；AI 工程則強調數據湖管理、特徵工程（Context Engineering）與自動化 Evals。",
+                "importance": "這是讓 AI 系統具備商業可用性、可重複性與可擴展性的唯一路徑。",
+                "bookExample": "作者提到，許多開發者在更換 Prompt 後只測試三個例子覺得不錯就上線，這就是典型的 Vibe Coding。"
+            },
+            {
+                "name": "模型適配階梯 (The Adaptation Hierarchy)",
+                "explanation": "開發順序應遵循：提示語工程 (Prompting) -> 檢索增強生成 (RAG) -> 微調 (Fine-tuning)。",
+                "importance": "幫助企業以最低成本、最高速度驗證產品價值，避免過早進入高成本的微調階段。",
+                "bookExample": "對於大多數應用，優化檢索到的上下文資訊比重新訓練模型的權重更能有效減少幻覺。"
+            },
+            {
+                "name": "AI 為評判 (AI-as-a-Judge)",
+                "explanation": "利用更強、更穩定的模型（如 GPT-4）來大規模評估較小、較快模型的輸出質量。",
+                "importance": "解決了傳統程式測試無法檢驗自然語言輸出語義準確性的難題。",
+                "bookExample": "使用評分 Rubric（準則），讓強大模型針對摘要的「事實一致性」和「簡潔度」進行 1-5 分的自動評分。"
+            },
+            {
+                "name": "推理性能的兩階段分析",
+                "explanation": "深入分析 Prefill（預填充，計算受限）與 Decode（解碼，內存頻寬受限）對延遲的影響。",
+                "importance": "開發者必須理解這兩者才能優化首字延遲（TTFT）與吞吐量，進而提升用戶體驗。",
+                "bookExample": "透過 KV Cache 技術在解碼階段重複利用計算結果，是提升長文本處理速度的關鍵工程手段。"
+            },
+            {
+                "name": "模型路由與網關 (Model Router & Gateway)",
+                "explanation": "在應用層建構網關，根據請求的複雜度、成本與延遲要求，將任務分發給不同的模型（如小模型處理簡單分類，大模型處理複雜推理）。",
+                "importance": "實現成本效益最大化，並防止單一供應商鎖定。",
+                "bookExample": "引入意圖分類器（Intent Classifier），如果用戶只是打招呼，則直接轉發給低成本的小模型處理。"
+            }
+        ]
+    },
+    "part5_eightyTwenty": {
+        "essentialKnowledge": [
+            "**評估 (Evaluation) 是 AI 系統的靈魂：** 如果沒有建立自動化的評估基準線，任何 Prompt 的優化都是盲目的。建立 Evals 是從實驗室走向生產環境的第一步。",
+            "**RAG 優於 Fine-tuning 的原則：** 對於需要實時資訊、特定知識庫或低成本迭代的應用，優先建構 RAG 系統。微調應該是為了解決格式、風格或極其特殊的領域推理。",
+            "**優化首字延遲 (TTFT)：** 用戶對 AI 的感知速度取決於第一個字出現的時間。工程師應專注於 Prefill 階段的優化、語義快取以及流式輸出（Streaming）。",
+            "**防護欄 (Guardrails) 機制：** 系統穩定性來自於多層次過濾。對輸入進行安全檢查，對輸出進行幻覺檢測與格式校驗（如 JSON 結構檢查）。",
+            "**數據即特徵：** 在基礎模型時代，你的數據湖質量與檢索算法的精確度，決定了應用的護城河，而非模型本身。"
+        ]
+    },
+    "part6_onePager": {
+        "coreIdea": "AI 工程學是一門在不可預測的概率模型基礎上，建構具備高度確定性與可靠性軟體系統的工程學科。其核心在於「以評估驅動開發」，並透過精細的上下文管理與推理優化來實現商業價值。",
+        "keyConcepts": [
+            "Adaptation Hierarchy (適配階梯：Prompt -> RAG -> FT)",
+            "AI-as-a-Judge (自動化評等)",
+            "Inference Dynamics (Prefill vs. Decode)",
+            "Context Engineering (上下文工程)"
+        ],
+        "keyPrinciples": [
+            "評估優先：在寫 Prompt 前先定好成功指標。",
+            "簡單出發：先用最強模型驗證可行性，再逐步降級優化成本。",
+            "系統化思考：AI 應用是 Pipeline（流水線），而不僅僅是單次的 Prompt 呼叫。",
+            "關注延遲與成本：理解推理瓶頸，利用快取與路由模型來優化效能。"
+        ],
+        "applications": [
+            "開發實踐： 建立「黃金數據集」進行回歸測試，確保模型更新不會導致舊功能失效。",
+            "系統架構： 建構 Model Gateway 來統一管理 API 金鑰、限流與模型降級邏輯。",
+            "數據路徑： 優化 RAG 中的文檔切割（Chunking）與重排序（Reranking）來提升檢索精確度。",
+            "效能優化： 針對高頻查詢實施語義快取，降低 70% 以上的 API 調用成本。"
+        ]
+    }
+}

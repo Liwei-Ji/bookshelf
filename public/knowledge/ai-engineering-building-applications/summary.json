@@ -1,0 +1,78 @@
+{
+    "meta": {
+        "bookTitle": "AI Engineering: Building Applications with Foundation Models (AI 工程：使用基礎模型建構應用)",
+        "author": "Chip Huyen",
+        "generatedAt": "2026-03-18T22:15:00Z",
+        "depth": "quick",
+        "language": "zh-TW"
+    },
+    "part1_overview": {
+        "topic": "AI 工程學（AI Engineering）：探討如何系統化地利用基礎模型（Foundation Models）開發生產級應用軟體 [cite: 1, 2]。",
+        "coreProblem": "如何彌補原始基礎模型（如 GPT-4）與生產級應用之間的差距，解決延遲、成本、可靠性及安全性等工程挑戰 [cite: 1, 3]。",
+        "mainArgument": "AI 工程不同於傳統的機器學習工程；它更側重於上下文管理、自動化評估、系統架構設計，以及如何透過檢索增強生成（RAG）而非單純的微調來獲取更好的結果 [cite: 1, 10]。",
+        "targetAudience": "軟體工程師、AI 技術架構師、產品經理及機器學習從業者 [cite: 1, 4]。",
+        "keyIdeas": [
+            {
+                "name": "模型適配流程 (Model Adaptation)",
+                "explanation": "從直接使用模型（Prompting）開始，逐步過渡到 RAG，最後才是微調（Fine-tuning）的階梯式方法 [cite: 2, 11]。",
+                "importance": "避免在應用開發初期投入過高成本，並確保系統的可維護性 [cite: 11]。",
+                "bookExample": "書中提到，大多數公司應該先優化提示語和檢索邏輯，因為微調基礎模型的成本極高且數據需求大 [cite: 11]。"
+            },
+            {
+                "name": "AI 為評判 (AI-as-a-Judge)",
+                "explanation": "利用更強大的模型（如 GPT-4）來自動評估較小模型輸出的質量 [cite: 13, 14]。",
+                "importance": "解決了 AI 輸出難以用傳統代碼單元測試（Unit Test）來驗證的問題 [cite: 13]。",
+                "bookExample": "例如，使用 GPT-4 來檢查一個摘要模型是否漏掉了關鍵信息或產生了幻覺 [cite: 14]。"
+            },
+            {
+                "name": "推理性能優化",
+                "explanation": "深入理解推理過程中的預填充（Prefill）與解碼（Decode）階段，優化首字延遲（TTFT） [cite: 15, 16]。",
+                "importance": "對於提供良好的使用者體驗（降低等待時間）至關重要 [cite: 15]。",
+                "bookExample": "透過 KV Cache 技術來減少重複計算，提升推理速度 [cite: 16]。"
+            },
+            {
+                "name": "上下文長度限制 (Context window limits)",
+                "explanation": "處理長文檔時，如何有效管理模型能「看見」的信息範圍 [cite: 18]。",
+                "importance": "直接影響模型的理解能力與 API 調用成本 [cite: 18]。",
+                "bookExample": "當處理 100 頁的文檔時，不能直接塞入 Prompt，必須使用向量檢索找出最相關的片段 [cite: 19]。"
+            },
+            {
+                "name": "代理與工具使用 (Agents & Tool Use)",
+                "explanation": "讓模型具備調用 API、運行腳本或進行網絡搜索的能力 [cite: 20]。",
+                "importance": "讓靜態模型變為能執行真實任務的動態實體 [cite: 20]。",
+                "bookExample": "一個旅行代理解決方案，能根據模型指令自動查詢航班 API 並預訂酒店 [cite: 21]。"
+            }
+        ]
+    },
+    "part5_eightyTwenty": {
+        "essentialKnowledge": [
+            "評估（Evaluation）是 AI 工程的第一要務：沒有評估體系，開發就像是在黑暗中行走，無法保證升級模型後的穩定性 [cite: 13, 22]。",
+            "上下文（Context）優於參數：對於絕大多數企業應用，精心設計的 RAG 系統比微調模型更能減少幻覺並提供最新的事實數據 [cite: 11, 18]。",
+            "延遲與成本的權衡：理解 Tokens 是計費單位，利用語義緩存（Semantic Cache）與小模型蒸餾來優化生產成本 [cite: 15, 17]。",
+            "安全性防護欄（Guardrails）：在模型輸入和輸出端設置過濾器，防止 Prompt 注入攻擊及不當內容輸出 [cite: 23]。",
+            "從 Prompt 到 Pipeline 的轉變：成功的 AI 應用不是單一的對話框，而是一套包含數據切片、檢索、重排序（Reranking）與後處理的流水線 [cite: 10, 19]。"
+        ]
+    },
+    "part6_onePager": {
+        "coreIdea": "AI 工程學是一門將「不確定性」的語言模型轉化為「確定性」軟體服務的工程實踐。其核心在於透過數據檢索、精準評估與推理優化，在基礎模型之上建構可靠的層次架構 [cite: 1, 10, 13]。",
+        "keyConcepts": [
+            "RAG (檢索增強生成)",
+            "Model Evaluation (自動化評估)",
+            "Prompt Engineering",
+            "Inference Optimization",
+            "AI Agents"
+        ],
+        "keyPrinciples": [
+            "評估優先：在編寫代碼前先定義成功指標 [cite: 13]。",
+            "簡單出發：優先使用最簡單的模型和提示語進行驗證 [cite: 11]。",
+            "對數據誠實：模型的能力邊界由輸入的數據質量決定 [cite: 18]。",
+            "持續監控：監控模型漂移（Drift）及生產環境下的異常輸出 [cite: 22]。"
+        ],
+        "applications": [
+            "數據檢索系統： 建構基於內部維基百科的高級問答機器人 [cite: 19]。",
+            "自動化內容審核： 使用 AI-as-a-judge 批量審核社群內容 [cite: 14]。",
+            "智慧代理： 開發能自動處理客戶工單並調用內部數據庫的客服代理 [cite: 21]。",
+            "效能優化： 透過模型路由（Model Router）根據查詢難度分配不同等級的模型，節省 50% 以上成本 [cite: 17]。"
+        ]
+    }
+}

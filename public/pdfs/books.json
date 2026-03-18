@@ -155,6 +155,7 @@
   {
     "id": "31",
     "url": "pdfs/Clear Thinking.pdf",
-    "title": "Clear Thinking"
+    "title": "Clear Thinking",
+    "knowledgePath": "knowledge/clear-thinking/summary.json"
   }
 ]
