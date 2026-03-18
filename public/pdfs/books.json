@@ -84,7 +84,8 @@
   {
     "id": "17",
     "url": "pdfs/AI Agents in Action.pdf",
-    "title": "AI Agents in Action"
+    "title": "AI Agents in Action",
+    "knowledgePath": "knowledge/ai-agents-in-action/summary.json"
   },
   {
     "id": "18",
@@ -150,5 +151,10 @@
     "id": "30",
     "url": "pdfs/LangChain for Life Sciences and Healthcare.pdf",
     "title": "LangChain for Life Sciences and Healthcare"
+  },
+  {
+    "id": "31",
+    "url": "pdfs/Clear Thinking.pdf",
+    "title": "Clear Thinking"
   }
 ]
