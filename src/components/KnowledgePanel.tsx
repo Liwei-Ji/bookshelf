@@ -262,15 +262,23 @@ export const KnowledgePanel: React.FC<KnowledgePanelProps> = ({ bookTitle, summa
                                                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{resource.label}</span>
                                             </div>
 
-                                            {/* PDF/PPT Link (New) */}
-                                            {resource.url && (
+                                            {/* PDF Inline Viewer (Updated) */}
+                                            {resource.url && resource.url.toLowerCase().endsWith('.pdf') ? (
+                                                <div className="w-full h-[500px] mb-3 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+                                                    <iframe
+                                                        src={`${baseUrl}${resource.url}`}
+                                                        className="w-full h-full border-none"
+                                                        title={resource.label}
+                                                    />
+                                                </div>
+                                            ) : resource.url && (
                                                 <a
                                                     href={`${baseUrl}${resource.url}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center justify-between p-3 mb-3 rounded-lg bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-800/30 text-orange-700 dark:text-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900/20 transition-colors"
                                                 >
-                                                    <span className="text-xs font-medium">查看簡報文件 (PDF/PPT)</span>
+                                                    <span className="text-xs font-medium">查看簡報文件 (PPT/Other)</span>
                                                     <FileText size={14} />
                                                 </a>
                                             )}

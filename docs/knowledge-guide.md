@@ -143,7 +143,7 @@ git push origin main
 |------|---------|---------|
 | `audio` | `<audio>` 播放器 | `.m4a`, `.mp3` |
 | `video` | `<video>` 播放器 | `.mp4` |
-| `slides` | 圖片輪播或文件連結 | `.png`, `.jpg`, `.pdf`, `.ppt` |
+| `slides` | 圖片輪播或內嵌文件 | `.png`, `.jpg`, `.pdf` (直接顯示), `.ppt` (連結) |
 
 ---
 
