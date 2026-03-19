@@ -96,5 +96,12 @@
             "框架設計： 先假定介面是「魔法」來想像理想流程，再考慮技術限制 [cite: 1945]。",
             "細節精煉： 針對不同平台（桌面、移動、Web）調整姿態，優化「永久中間使用者」的體驗 [cite: 2041, 2086, 2125]。"
         ]
-    }
+    },
+    "resources": [
+        {
+            "type": "video",
+            "label": "About Face 核心導讀",
+            "url": "knowledge/about-face-the-essentials-of-Interaction-design/video.mp4"
+        }
+    ]
 }
