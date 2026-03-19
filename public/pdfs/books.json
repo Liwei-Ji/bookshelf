@@ -105,7 +105,8 @@
   {
     "id": "21",
     "url": "pdfs/Beyond Vibe Coding Early Release.pdf",
-    "title": "Beyond Vibe Coding Early Release"
+    "title": "Beyond Vibe Coding Early Release",
+    "knowledgePath": "knowledge/beyond-vibe-coding/summary.json"
   },
   {
     "id": "22",
