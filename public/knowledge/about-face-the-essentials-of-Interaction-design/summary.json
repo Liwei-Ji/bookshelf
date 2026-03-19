@@ -104,14 +104,14 @@
             "url": "knowledge/about-face-the-essentials-of-Interaction-design/podcast.m4a"
         },
         {
-            "type": "slides",
-            "label": "重點簡報 (PDF)",
-            "url": "knowledge/about-face-the-essentials-of-Interaction-design/slides.pdf"
+            "type": "video",
+            "label": "核心導讀",
+            "url": "knowledge/about-face-the-essentials-of-Interaction-design/video.mp4"
         },
         {
-            "type": "video",
-            "label": "About Face 核心導讀",
-            "url": "knowledge/about-face-the-essentials-of-Interaction-design/video.mp4"
+            "type": "slides",
+            "label": "重點簡報",
+            "url": "knowledge/about-face-the-essentials-of-Interaction-design/slides.pdf"
         }
     ]
 }
