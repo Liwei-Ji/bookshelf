@@ -92,7 +92,12 @@ mkdir -p public/knowledge/{book-slug}/slides
     },
     {
       "type": "slides",
-      "label": "重點簡報",
+      "label": "重點簡報 (PDF)",
+      "url": "knowledge/{book-slug}/slides.pdf"
+    },
+    {
+      "type": "slides",
+      "label": "重點簡報 (圖片版)",
       "images": [
         "knowledge/{book-slug}/slides/01.png",
         "knowledge/{book-slug}/slides/02.png"
@@ -138,7 +143,7 @@ git push origin main
 |------|---------|---------|
 | `audio` | `<audio>` 播放器 | `.m4a`, `.mp3` |
 | `video` | `<video>` 播放器 | `.mp4` |
-| `slides` | 圖片輪播 | `.png`, `.jpg` |
+| `slides` | 圖片輪播或文件連結 | `.png`, `.jpg`, `.pdf`, `.ppt` |
 
 ---
 

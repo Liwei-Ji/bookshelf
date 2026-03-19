@@ -95,8 +95,8 @@ export const KnowledgePanel: React.FC<KnowledgePanelProps> = ({ bookTitle, summa
                     <button
                         onClick={() => setActiveTab('insights')}
                         className={`flex-1 py-3 text-xs font-medium text-center transition-colors ${activeTab === 'insights'
-                                ? 'text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white'
-                                : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                            ? 'text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white'
+                            : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
                             }`}
                     >
                         💡 知識要點
@@ -104,8 +104,8 @@ export const KnowledgePanel: React.FC<KnowledgePanelProps> = ({ bookTitle, summa
                     <button
                         onClick={() => setActiveTab('media')}
                         className={`flex-1 py-3 text-xs font-medium text-center transition-colors ${activeTab === 'media'
-                                ? 'text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white'
-                                : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                            ? 'text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white'
+                            : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
                             }`}
                     >
                         🎧 學習資源
@@ -255,22 +255,39 @@ export const KnowledgePanel: React.FC<KnowledgePanelProps> = ({ bookTitle, summa
                                             </video>
                                         </div>
                                     )}
-                                    {resource.type === 'slides' && resource.images && (
+                                    {resource.type === 'slides' && (
                                         <div className="p-4">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <Presentation size={16} className="text-orange-500" />
                                                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{resource.label}</span>
                                             </div>
-                                            <div className="space-y-2 max-h-[60vh] overflow-y-auto rounded-lg">
-                                                {resource.images.map((img, j) => (
-                                                    <img
-                                                        key={j}
-                                                        src={`${baseUrl}${img}`}
-                                                        alt={`${resource.label} - ${j + 1}`}
-                                                        className="w-full rounded-md"
-                                                    />
-                                                ))}
-                                            </div>
+
+                                            {/* PDF/PPT Link (New) */}
+                                            {resource.url && (
+                                                <a
+                                                    href={`${baseUrl}${resource.url}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-between p-3 mb-3 rounded-lg bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-800/30 text-orange-700 dark:text-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900/20 transition-colors"
+                                                >
+                                                    <span className="text-xs font-medium">查看簡報文件 (PDF/PPT)</span>
+                                                    <FileText size={14} />
+                                                </a>
+                                            )}
+
+                                            {/* Image Carousel (Existing) */}
+                                            {resource.images && resource.images.length > 0 && (
+                                                <div className="space-y-2 max-h-[60vh] overflow-y-auto rounded-lg">
+                                                    {resource.images.map((img, j) => (
+                                                        <img
+                                                            key={j}
+                                                            src={`${baseUrl}${img}`}
+                                                            alt={`${resource.label} - ${j + 1}`}
+                                                            className="w-full rounded-md"
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
