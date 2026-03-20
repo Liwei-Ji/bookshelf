@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "bookTitle": "LangChain for Life Sciences and Healthcare",
+        "generatedAt": "2026-03-20T08:45:00Z",
+        "depth": "none",
+        "language": "zh-TW"
+    },
+    "resources": [
+        {
+            "type": "audio",
+            "label": "Podcast 語音摘要",
+            "url": "knowledge/langchain-for-life-sciences-and-healthcare/podcast.m4a"
+        },
+        {
+            "type": "slides",
+            "label": "重點簡報 (PDF)",
+            "url": "knowledge/langchain-for-life-sciences-and-healthcare/slides.pdf"
+        },
+        {
+            "type": "video",
+            "label": "核心導讀影片",
+            "url": "knowledge/langchain-for-life-sciences-and-healthcare/video.mp4"
+        }
+    ]
+}

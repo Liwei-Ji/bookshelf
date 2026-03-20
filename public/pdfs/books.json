@@ -151,7 +151,8 @@
   {
     "id": "30",
     "url": "pdfs/LangChain for Life Sciences and Healthcare.pdf",
-    "title": "LangChain for Life Sciences and Healthcare"
+    "title": "LangChain for Life Sciences and Healthcare",
+    "knowledgePath": "knowledge/langchain-for-life-sciences-and-healthcare/summary.json"
   },
   {
     "id": "31",
