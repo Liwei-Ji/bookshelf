@@ -63,7 +63,8 @@
   {
     "id": "13",
     "url": "pdfs/Hooked How to Build Habit-Forming Products.pdf",
-    "title": "Hooked How to Build Habit-Forming Products"
+    "title": "Hooked How to Build Habit-Forming Products",
+    "knowledgePath": "knowledge/hooked-how-to-build-habit-forming-products/summary.json"
   },
   {
     "id": "14",
@@ -95,7 +96,8 @@
   {
     "id": "19",
     "url": "pdfs/UX for Business.pdf",
-    "title": "UX for Business"
+    "title": "UX for Business",
+    "knowledgePath": "knowledge/ux-for-business/summary.json"
   },
   {
     "id": "20",

@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "bookTitle": "Hooked: How to Build Habit-Forming Products",
+        "generatedAt": "2026-03-20T22:18:00Z",
+        "depth": "none",
+        "language": "zh-TW"
+    },
+    "resources": [
+        {
+            "type": "audio",
+            "label": "Podcast 語音摘要",
+            "url": "knowledge/hooked-how-to-build-habit-forming-products/podcast.m4a"
+        },
+        {
+            "type": "slides",
+            "label": "重點簡報",
+            "url": "knowledge/hooked-how-to-build-habit-forming-products/slides.pdf"
+        },
+        {
+            "type": "video",
+            "label": "核心導讀影片",
+            "url": "knowledge/hooked-how-to-build-habit-forming-products/video.mp4"
+        }
+    ]
+}

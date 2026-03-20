@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "bookTitle": "UX for Business",
+        "generatedAt": "2026-03-20T21:35:00Z",
+        "depth": "none",
+        "language": "zh-TW"
+    },
+    "resources": [
+        {
+            "type": "audio",
+            "label": "Podcast 語音摘要",
+            "url": "knowledge/ux-for-business/podcast.m4a"
+        },
+        {
+            "type": "slides",
+            "label": "重點簡報",
+            "url": "knowledge/ux-for-business/slides.pdf"
+        },
+        {
+            "type": "video",
+            "label": "核心導讀影片",
+            "url": "knowledge/ux-for-business/video.mp4"
+        }
+    ]
+}
